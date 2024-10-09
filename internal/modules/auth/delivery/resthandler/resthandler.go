@@ -26,7 +26,9 @@ type RestHandler struct {
 // NewRestHandler create new rest handler
 func NewRestHandler(uc usecase.Usecase, deps dependency.Dependency) *RestHandler {
 	return &RestHandler{
-		uc: uc, mw: deps.GetMiddleware(), validator: deps.GetValidator(),
+		uc:        uc,
+		mw:        deps.GetMiddleware(),
+		validator: deps.GetValidator(),
 	}
 }
 
@@ -58,6 +60,11 @@ func (h *RestHandler) postLogin(rw http.ResponseWriter, req *http.Request) {
 	var payload domain.LoginRequest
 
 	body, _ := io.ReadAll(req.Body)
+	if err := h.validator.ValidateDocument("auth/save", body); err != nil {
+		wrapper.NewHTTPResponse(http.StatusBadRequest, "Failed validate payload", err).JSON(rw)
+		return
+	}
+
 	if err := json.Unmarshal(body, &payload); err != nil {
 		wrapper.NewHTTPResponse(http.StatusBadRequest, err.Error()).JSON(rw)
 	}

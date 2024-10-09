@@ -3,14 +3,17 @@
 	"title": "JSON Schema for save",
 	"type": "object",
 	"properties": {
-		"id": {
-			"type": "integer"
+		"email": {
+			"type": "string",
+			"format": "email",
+			"minLength": 1,
+			"errorMessage": "error email message"
 		},
-		"field": {
+		"password": {
 			"type": "string",
 			"minLength": 1
 		}
 	},
-	"required": [ "field" ],
+	"required": [ "email", "password" ],
 	"additionalProperties": false
 }

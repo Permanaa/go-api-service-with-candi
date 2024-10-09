@@ -12,14 +12,6 @@ func (uc *authUsecaseImpl) Login(ctx context.Context, req *domain.LoginRequest) 
 	emailPayload := req.Email
 	passwordPayload := req.Password
 
-	if emailPayload == "" {
-		return resp, errors.New("email cannot be empty")
-	}
-
-	if passwordPayload == "" {
-		return resp, errors.New("password cannot be empty")
-	}
-
 	user, errGetUser := uc.repoSQL.AuthRepo().Find(ctx, &domain.FilterAuth{Email: emailPayload})
 	if errGetUser != nil {
 		return resp, errGetUser
