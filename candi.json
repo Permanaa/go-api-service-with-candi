@@ -1,0 +1,34 @@
+{
+     "GoVersion": "1.22",
+     "Version": "v1.17.16",
+     "ServiceName": "go-api-service-with-candi",
+     "PackagePrefix": "go-api-service-with-candi",
+     "ProtoSource": "go-api-service-with-candi/api/proto",
+     "Owner": "",
+     "License": "",
+     "Year": 2024,
+     "IsMonorepo": false,
+     "RestHandler": true,
+     "GRPCHandler": false,
+     "GraphQLHandler": false,
+     "FiberRestHandler": true,
+     "KafkaHandler": false,
+     "SchedulerHandler": false,
+     "RedisSubsHandler": false,
+     "TaskQueueHandler": false,
+     "PostgresListenerHandler": false,
+     "RabbitMQHandler": false,
+     "IsWorkerActive": false,
+     "RedisDeps": false,
+     "SQLDeps": true,
+     "MongoDeps": false,
+     "SQLUseGORM": true,
+     "ArangoDeps": false,
+     "SQLDriver": "postgres",
+     "WorkerPlugins": null,
+     "Modules": [
+          {
+               "ModuleName": "auth"
+          }
+     ]
+}

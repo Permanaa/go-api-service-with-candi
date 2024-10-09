@@ -1,0 +1,6 @@
+bin
+vendor
+main_service.go
+go-api-service-with-candi
+coverage.txt
+.env
