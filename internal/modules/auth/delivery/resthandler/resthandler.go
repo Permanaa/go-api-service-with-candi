@@ -41,6 +41,7 @@ func (h *RestHandler) Mount(root interfaces.RESTRouter) {
 
 	v1Auth.POST("/auth/anonymous-token", h.postAnonymousToken, h.mw.HTTPBasicAuth)
 	v1Auth.POST("/auth/login", h.postLogin, validateAnonymousToken)
+	v1Auth.POST("/auth/register", h.postRegister, validateAnonymousToken)
 }
 
 func (h *RestHandler) postAnonymousToken(rw http.ResponseWriter, req *http.Request) {
@@ -60,13 +61,14 @@ func (h *RestHandler) postLogin(rw http.ResponseWriter, req *http.Request) {
 	var payload domain.LoginRequest
 
 	body, _ := io.ReadAll(req.Body)
-	if err := h.validator.ValidateDocument("auth/save", body); err != nil {
+	if err := h.validator.ValidateDocument("auth/login", body); err != nil {
 		wrapper.NewHTTPResponse(http.StatusBadRequest, "Failed validate payload", err).JSON(rw)
 		return
 	}
 
 	if err := json.Unmarshal(body, &payload); err != nil {
 		wrapper.NewHTTPResponse(http.StatusBadRequest, err.Error()).JSON(rw)
+		return
 	}
 
 	resp, err := h.uc.Auth().Login(req.Context(), &payload)

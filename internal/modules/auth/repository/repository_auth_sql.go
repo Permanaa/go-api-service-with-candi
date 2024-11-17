@@ -71,7 +71,7 @@ func (r *authRepoSQL) Find(ctx context.Context, filter *domain.FilterAuth) (resu
 	return
 }
 
-func (r *authRepoSQL) Save(ctx context.Context, data *shareddomain.Auth, updateOptions ...candishared.DBUpdateOptionFunc) (err error) {
+func (r *authRepoSQL) Save(ctx context.Context, data *shareddomain.User, updateOptions ...candishared.DBUpdateOptionFunc) (err error) {
 	trace, ctx := tracer.StartTraceWithContext(ctx, "AuthRepoSQL:Save")
 	defer func() { trace.Finish(tracer.FinishWithError(err)) }()
 

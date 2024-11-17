@@ -17,6 +17,7 @@ type AuthUsecase interface {
 	GenerateAnonymousToken() (token string, err error)
 	ValidateAnonymousToken(next http.Handler) http.Handler
 	Login(ctx context.Context, req *domain.LoginRequest) (resp domain.LoginResponse, err error)
+	Register(ctx context.Context, req *domain.RegisterRequest) (reps domain.RegisterResponse, err error)
 }
 
 type authUsecaseImpl struct {

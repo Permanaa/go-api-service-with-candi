@@ -16,6 +16,6 @@ type AuthRepository interface {
 	FetchAll(ctx context.Context, filter *domain.FilterAuth) ([]shareddomain.Auth, error)
 	Count(ctx context.Context, filter *domain.FilterAuth) int
 	Find(ctx context.Context, filter *domain.FilterAuth) (shareddomain.User, error)
-	Save(ctx context.Context, data *shareddomain.Auth, updateOptions ...candishared.DBUpdateOptionFunc) error
+	Save(ctx context.Context, data *shareddomain.User, updateOptions ...candishared.DBUpdateOptionFunc) error
 	Delete(ctx context.Context, filter *domain.FilterAuth) (err error)
 }

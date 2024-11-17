@@ -1,8 +1,12 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema",
-	"title": "JSON Schema for save",
+	"title": "JSON Schema for register",
 	"type": "object",
 	"properties": {
+		"name": {
+			"type": "string",
+			"minLength": 1
+		},
 		"email": {
 			"type": "string",
 			"format": "email",
@@ -12,8 +16,12 @@
 		"password": {
 			"type": "string",
 			"minLength": 1
+		},
+		"passwordConfirmation": {
+			"type": "string",
+			"minLength": 1
 		}
 	},
-	"required": [ "email", "password" ],
+	"required": [ "name", "email", "password", "passwordConfirmation" ],
 	"additionalProperties": false
 }
